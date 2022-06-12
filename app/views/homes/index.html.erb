@@ -1,0 +1,2 @@
+<h3>Hi <%= current_user.email %></h3>
+<%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
