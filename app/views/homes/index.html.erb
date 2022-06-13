@@ -1,2 +1,2 @@
-<h3>Hi <%= current_user.email %></h3>
-<%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+<h3>Welcome to homes index</h3>
+<%= link_to 'Login/Sign up', new_user_session_path, class: 'btn btn-sm btn-primary' if !user_signed_in? %>
