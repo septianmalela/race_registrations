@@ -51,6 +51,12 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
   # end
 
+  def update_resource(resource, params)
+    if params[:current_password].blank?
+      resource.update_without_password(params)
+    end
+  end
+
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     users_home_index_path
