@@ -6,11 +6,13 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <% controller_edit = params[:controller].include?('users/devise/registrations') %>
+      <li class="nav-item <%= controller_edit ? 'active' : '' %>">
         <%= link_to 'profile', edit_user_registration_path, class: 'nav-link' %>
       </li>
-      <li class="nav-item">
-        <%= link_to 'Daftar Lomba', '#', class: 'nav-link' %>
+      <% controller_contest = params[:controller].include?('users/contests') %>
+      <li class="nav-item <%= controller_contest ? 'active' : '' %>">
+        <%= link_to 'Daftar Lomba', users_contests_path, class: 'nav-link' %>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

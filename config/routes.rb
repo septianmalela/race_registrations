@@ -9,9 +9,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :home
-    resources :contests do
-      resources :first_aids      
-    end
+    resources :contests
   end
 
   resources :homes

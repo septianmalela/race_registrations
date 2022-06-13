@@ -1,6 +1,8 @@
-<h3>Welcome to homes index</h3>
-<% if user_signed_in? %>
-  <%= link_to 'Go to index Homes', users_home_index_path if user_signed_in? %>
-<% else %>
-  <%= link_to 'Login/Sign up', new_user_session_path, class: 'btn btn-sm btn-primary' if !user_signed_in? %>
-<% end %>
+<div class="container">
+  <h3>Welcome to homes index</h3>
+  <% if user_signed_in? %>
+    <%= link_to 'Dashboard User', users_home_index_path if user_signed_in? %>
+  <% else %>
+    <%= link_to 'Login/Sign up', new_user_session_path, class: 'btn btn-sm btn-primary' if !user_signed_in? %>
+  <% end %>
+</div>
