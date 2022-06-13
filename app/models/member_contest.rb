@@ -6,6 +6,8 @@ class MemberContest < ApplicationRecord
 
   after_create :create_value_format
 
+  scope :order_desc, ->  { order(created_at: :desc) }
+
   private
 
   def create_value_format

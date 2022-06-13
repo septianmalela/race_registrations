@@ -1,3 +1,24 @@
 <div class="container">
-  <h3>Daftar Lomba</h3>
+  <h3>Daftar Lomba PMR <%= current_user.profile&.school&.try(:upcase) %></h3>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Mata Lomba</th>
+        <th scope="col">Code</th>
+        <th scope="col">Tingkatan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @member_contests.each_with_index do |member_contest, idx| %>
+        <tr>
+          <th scope="row"><%= idx + 1 %></th>
+          <td><%= member_contest.list_contest.title %></td>
+          <td><%= member_contest.code %></td>
+          <td><%= member_contest.list_contest.type_pmr.titleize %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
