@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :profile, dependent: :destroy
+  has_one :contest, dependent: :destroy
 
   validates :email, uniqueness: true
 
