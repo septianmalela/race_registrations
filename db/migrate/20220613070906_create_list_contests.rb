@@ -4,6 +4,7 @@ class CreateListContests < ActiveRecord::Migration[6.1]
       t.string  :title
       t.integer :type_pmr
       t.integer :type_contest
+      t.text :value_format
 
       t.timestamps
     end

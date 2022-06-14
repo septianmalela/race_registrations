@@ -6,8 +6,11 @@ class ListContest < ApplicationRecord
                       :history
                     ]
 
+  serialize :value_format, Hash
+
   validates :type_pmr, uniqueness: { scope: :type_contest,
     message: "can't double type PMR & type contest" }
+
 
   class << self
     def title_names

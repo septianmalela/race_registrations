@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2022_06_13_111031) do
     t.string "title"
     t.integer "type_pmr"
     t.integer "type_contest"
+    t.text "value_format"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -81,6 +82,8 @@ ActiveRecord::Schema.define(version: 2022_06_13_111031) do
   create_table "value_formats", force: :cascade do |t|
     t.text "value_format"
     t.bigint "member_contest_id"
+    t.integer "valueformatable_id"
+    t.string "valueformatable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["member_contest_id"], name: "index_value_formats_on_member_contest_id"

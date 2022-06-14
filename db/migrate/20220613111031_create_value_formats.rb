@@ -3,6 +3,8 @@ class CreateValueFormats < ActiveRecord::Migration[6.1]
     create_table :value_formats do |t|
       t.text :value_format
       t.references :member_contest
+      t.integer :valueformatable_id
+      t.string :valueformatable_type
 
       t.timestamps
     end
