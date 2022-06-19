@@ -3,7 +3,7 @@
 class Users::Devise::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :form_collection, only: %i[edit update]
+  before_action :form_collection, only: %i[new create edit update]
 
   # GET /resource/sign_up
   # def new
@@ -11,9 +11,9 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -72,7 +72,6 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
   end
 
   def form_collection
-    resource.build_profile if resource.profile.blank?
     @type_pmr = Profile::type_pmrs.map {|key, value| [key.titleize, key]}
   end
 end

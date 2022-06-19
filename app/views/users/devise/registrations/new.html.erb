@@ -1,29 +1,53 @@
 <div class="container">
-  <h2>Sign up</h2>
+  <h2>Pendaftaran Online AKPER VI</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "users/devise/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control col-md-4' %>
-    </div>
+    <div class="col-md-4">
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control col-md-4', required: true, placeholder: 'akpervi@gmail.com' %>
+      </div>
 
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control col-md-4' %>
-    </div>
+      <%= f.fields_for :profile, resource.build_profile do |profile| %>
+        <div class="field">
+          <%= profile.label :school, 'Name School' %>
+          <%= profile.text_field :school, class: 'form-control col-md-4', required: true, placeholder: 'SMK Negeri 13 Bandung' %>
+        </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control col-md-4 mb-2' %>
-    </div>
+        <div class="field">
+          <%= profile.label :name, 'Official Name' %>
+          <%= profile.text_field :name, class: 'form-control col-md-4', required: true, placeholder: 'Ena Supriatna' %>
+        </div>
 
-    <div class="actions">
-      <%= f.submit "Sign up", class: 'btn btn-primary btn-sm' %>
+        <div class="field">
+          <%= profile.label :phone, 'Phone Number' %>
+          <%= profile.text_field :phone, class: 'form-control col-md-4', required: true, placeholder: '08xxxxxx' %>
+        </div>
+
+        <div class="field">
+          <%= profile.label :type_pmr, 'Type PMR' %>
+          <%= profile.select :type_pmr, options_for_select(@type_pmr, profile.object.type_pmr), { include_blank: 'Wira/Madya' }, class: 'form-control col-md-4 mb-2' %>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control col-md-4', required: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control col-md-4 mb-2', required: true %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: 'btn btn-primary btn-sm', 'data-confirm' => 'Data yang diinput udah benar?' %>
+      </div>
     </div>
   <% end %>
 

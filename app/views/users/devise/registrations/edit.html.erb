@@ -1,12 +1,13 @@
 <%= render 'layouts/shared/navbar' %>
 <div class="container">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h6 class="text-danger">Email, Nama Sekolah, Type PMR tidak bisa di edit, ada kesalahan atau typo hubungi panitia!</h6>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "users/devise/shared/error_messages", resource: resource %>
 
     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control col-md-4' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control col-md-4', disabled: true %>
     </div>
 
 <!--     <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -34,7 +35,7 @@
 
     <%= f.fields_for :profile do |profile| %>
       <%= profile.label :school, 'Name School' %>
-      <%= profile.text_field :school, class: 'form-control col-md-4', required: true %>
+      <%= profile.text_field :school, class: 'form-control col-md-4', required: true, disabled: true %>
 
       <%= profile.label :name, 'Official Name' %>
       <%= profile.text_field :name, class: 'form-control col-md-4', required: true %>
@@ -43,7 +44,7 @@
       <%= profile.text_field :phone, class: 'form-control col-md-4', required: true %>
 
       <%= profile.label :type_pmr, 'Type PMR' %>
-      <%= profile.select :type_pmr, options_for_select(@type_pmr, profile.object.type_pmr), { include_blank: 'Type PMR' }, class: 'form-control col-md-4 mb-2' %>
+      <%= profile.select :type_pmr, options_for_select(@type_pmr, profile.object.type_pmr), { include_blank: 'Type PMR' }, class: 'form-control col-md-4 mb-2', disabled: true %>
     <% end %>
 
     <div class="actions">
