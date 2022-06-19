@@ -21,16 +21,25 @@ type_pmrs.each do |key_type_pmr, value_type_pmr|
   end
 end
 
-FirstAid.all.each do |first_aid|
-  Inventory.create(stock: 20, price: 10000, inventoryable: first_aid)
+ListContest.all.each do |list_contest|
+  Inventory.create(stock: 20, price: 10000, inventoryable: list_contest)
 end
 
 first_aid_1 = FirstAid.first
 first_aid_2 = FirstAid.second
 
+first_aid_1.update(value_format: {'pembalutan_luka' => 10})
+
 contest = User.first.contest
-contest.member_contests.create(school: 'SMK Negeri 13 Bandung', code: 'ppw-001',
+contest.member_contests.create(school: 'SMK Negeri 13 Bandung', code: 'ppm-001',
                                helper_1: 'septian', helper_2: 'maulana', list_contest: first_aid_1)
 
 contest.member_contests.create(school: 'SMK Negeri 13 Bandung', code: 'ppw-002',
                                helper_1: 'fiky', helper_2: 'ramadhani', list_contest: first_aid_2)
+
+# user = User.first
+# list_contest = ListContest.find(9)
+
+# (0..100).each do |num|
+#   MemberContest.new(school: user.profile.school, helper_1: "septian_#{num}", helper_2: "yusup_#{num}", contest: user.contest, list_contest: list_contest).save
+# end

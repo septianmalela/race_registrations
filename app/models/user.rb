@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_one :contest, dependent: :destroy
+  has_one :order,   dependent: :destroy
 
   validates :email, uniqueness: true
 

@@ -3,6 +3,7 @@ class MemberContest < ApplicationRecord
   belongs_to :list_contest
 
   has_one :value_format
+  has_one :order_item
 
   after_create :create_value_format, :generate_code
 

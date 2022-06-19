@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_13_111031) do
+ActiveRecord::Schema.define(version: 2022_06_19_062239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,36 @@ ActiveRecord::Schema.define(version: 2022_06_13_111031) do
     t.index ["list_contest_id"], name: "index_member_contests_on_list_contest_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "member_contest_id"
+    t.bigint "inventory_id"
+    t.string "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["inventory_id"], name: "index_order_items_on_inventory_id"
+    t.index ["member_contest_id"], name: "index_order_items_on_member_contest_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "status"
+    t.string "total_payment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.text "avatar_data"
+    t.string "payment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
     t.string "school"
@@ -82,11 +112,12 @@ ActiveRecord::Schema.define(version: 2022_06_13_111031) do
   create_table "value_formats", force: :cascade do |t|
     t.text "value_format"
     t.bigint "member_contest_id"
-    t.integer "valueformatable_id"
-    t.string "valueformatable_type"
+    t.bigint "list_contest_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["list_contest_id"], name: "index_value_formats_on_list_contest_id"
     t.index ["member_contest_id"], name: "index_value_formats_on_member_contest_id"
   end
 
+  add_foreign_key "payments", "orders"
 end
