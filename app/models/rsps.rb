@@ -1,14 +1,14 @@
-class FamilyCare < ListContest
-  default_scope { where(type_contest: 'family_care') }
+class Rsps < ListContest
+  default_scope { where(type_contest: 'rsps') }
 
   def generate_code_first_aid
     number_code = self.member_contests.map(&:code).reject(&:blank?)
 
     case type_pmr
     when 'wira'
-      return 'PKW-001' if number_code.blank?
+      return 'KJW-001' if number_code.blank?
     when 'madya'
-      return 'PKM-001' if number_code.blank?
+      return 'KJM-001' if number_code.blank?
     end
 
     number_code = number_code.map { |a| a.split('-') }.map(&:last).map(&:to_i).sort.last + 1
@@ -30,10 +30,10 @@ class FamilyCare < ListContest
   end
 
   def first_aid_code_madya(number)
-    "PKM-#{number}"
+    "KJM-#{number}"
   end
 
   def first_aid_code_wira(number)
-    "PKW-#{number}"
+    "KJW-#{number}"
   end
 end
