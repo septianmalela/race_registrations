@@ -12,11 +12,11 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :profile, reject_if: :all_blank
 
-  before_save :update_name_school_contest
+  before_save :build_contest
 
   private
 
-  def update_name_school_contest
+  def build_contest
     build_contest if contest.blank?
   end
 end
