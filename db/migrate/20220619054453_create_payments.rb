@@ -3,7 +3,7 @@ class CreatePayments < ActiveRecord::Migration[6.1]
     create_table :payments do |t|
       t.references :order, null: false, foreign_key: true
       t.text :avatar_data
-      t.string :payment
+      t.integer :payment, default: 0
 
       t.timestamps
     end

@@ -60,7 +60,8 @@ ActiveRecord::Schema.define(version: 2022_06_19_062239) do
     t.bigint "order_id"
     t.bigint "member_contest_id"
     t.bigint "inventory_id"
-    t.string "price"
+    t.integer "price", default: 0
+    t.integer "quantity", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["inventory_id"], name: "index_order_items_on_inventory_id"
@@ -70,8 +71,9 @@ ActiveRecord::Schema.define(version: 2022_06_19_062239) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "status"
-    t.string "total_payment"
+    t.integer "status"
+    t.integer "total_payment", default: 0
+    t.integer "remaining_payment", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -80,7 +82,7 @@ ActiveRecord::Schema.define(version: 2022_06_19_062239) do
   create_table "payments", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.text "avatar_data"
-    t.string "payment"
+    t.integer "payment", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_payments_on_order_id"

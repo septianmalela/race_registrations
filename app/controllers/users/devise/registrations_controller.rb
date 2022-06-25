@@ -13,6 +13,11 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+
+    if resource.errors.blank?
+      resource.build_order.save
+      resource.build_contest.save
+    end
   end
 
   # GET /resource/edit

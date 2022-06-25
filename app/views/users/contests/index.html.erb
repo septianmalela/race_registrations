@@ -1,7 +1,7 @@
 <div class="container">
   <h3>Daftar Lomba PMR <%= current_user.profile&.school&.try(:upcase) %></h3>
-
-  <table class="table table-striped">
+  <%= link_to 'Tambah Mata Loma +', new_users_contest_path, class: 'btn btn-sm btn-success' %>
+  <table class="table table-hover table-responsive mt-3">
     <thead>
       <tr>
         <th scope="col">No</th>

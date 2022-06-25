@@ -12,6 +12,9 @@
 
   <body>
     <%= render 'layouts/shared/navbar' if user_signed_in? %>
+    <div class="container">
+      <%= flash_message %>
+    </div>
     <%= yield %>
   </body>
 </html>

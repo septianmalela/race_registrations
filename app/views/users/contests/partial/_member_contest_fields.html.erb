@@ -1,0 +1,27 @@
+<div class="nested-fields">
+  <%= f.hidden_field :_destroy %>
+  <div class="form-group mb-3 mt-3 col-md-6 col-12">
+    <%= f.label :helper_1, 'Penolong 1' %>
+    <%= f.text_field :helper_1, class: 'form-control', placeholder: 'Penolong 1', required: true %>
+  </div>
+
+  <div class="form-group mb-3 col-md-6 col-12">
+    <%= f.label :helper_2, 'Penolong 2' %>
+    <%= f.text_field :helper_2, class: 'form-control', placeholder: 'Penolong 2', required: true %>
+  </div>
+
+  <div class="form-group mb-3 col-md-6 col-12">
+    <%= f.label :helper_3, 'Penolong 3' %>
+    <%= f.text_field :helper_3, class: 'form-control', placeholder: 'Penolong 3', required: true %>
+  </div>
+
+  <div class="form-group mb-3 col-md-6 col-12">
+    <label>Mata Lomba</label>
+    <%= f.select :list_contest_id,
+            options_for_select(@list_contests, f.object.list_contest_id),
+            {include_blank: 'Pilih Mata Lomba'}, class: 'custom-select form-control', required: true %>
+  </div>
+  <div>
+    <%= link_to "Remove", '#', class: "remove_fields" %>
+  </div>
+</div>

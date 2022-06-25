@@ -10,10 +10,12 @@ class ListContest < ApplicationRecord
   has_many :member_contests
   has_many :value_formats
 
+  serialize :value_format, Hash
+
+  scope :list_contest_wira, ->(type_pmr) { where(type_pmr: type_pmr) }
+
   validates :type_pmr, uniqueness: { scope: :type_contest,
     message: "can't double type PMR & type contest" }
-
-  serialize :value_format, Hash
 
   class << self
     def title_names

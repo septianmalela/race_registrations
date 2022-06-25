@@ -11,12 +11,6 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
   accepts_nested_attributes_for :profile, reject_if: :all_blank
-
-  before_save :build_contest
-
-  private
-
-  def build_contest
-    build_contest if contest.blank?
-  end
+  accepts_nested_attributes_for :contest, reject_if: :all_blank
+  accepts_nested_attributes_for :order, reject_if: :all_blank
 end

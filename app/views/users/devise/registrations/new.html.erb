@@ -30,7 +30,7 @@
           <%= profile.label :type_pmr, 'Type PMR' %>
           <%= profile.select :type_pmr, options_for_select(@type_pmr, profile.object.type_pmr), { include_blank: 'Wira/Madya' }, class: 'form-control col-md-4 mb-2' %>
         </div>
-      <% end %>
+      <% end %> 
 
       <div class="field">
         <%= f.label :password %>

@@ -4,7 +4,8 @@ class CreateOrderItems < ActiveRecord::Migration[6.1]
       t.references :order
       t.references :member_contest
       t.references :inventory
-      t.string :price
+      t.integer :price, default: 0
+      t.integer :quantity, default: 1
 
       t.timestamps
     end
