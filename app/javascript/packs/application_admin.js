@@ -11,6 +11,14 @@ import "channels"
 import 'bootstrap'
 import '../stylesheet/application_admin'
 
+import './vendors/js/vendor.bundle.base.js'
+import './vendors/chart.js/Chart.min.js'
+import './vendors/moment/moment.min.js'
+import './vendors/daterangepicker/daterangepicker.js'
+import './vendors/chartist/chartist.min.js'
+import './js/off-canvas.js'
+import './js/misc.js'
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

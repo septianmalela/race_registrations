@@ -2,19 +2,29 @@
 <html>
   <head>
     <title>Admin Akper VI</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application_admin', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application_admin', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css">
   </head>
 
   <body>
-    <div class="container">
-      <%= flash_message %>
+    <div class="container-scroller">
+      <%= render partial: 'layouts/shared_admin/navbar' %>
+      <div class="container-fluid page-body-wrapper">
+        <%= render partial: 'layouts/shared_admin/sidebar' %>
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <%= yield %>
+          </div>
+          <%= render partial: 'layouts/shared_admin/footer' %>
+        </div>
+      </div>
     </div>
-    <%= yield %>
   </body>
 </html>
