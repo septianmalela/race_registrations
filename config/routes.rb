@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :admins, controllers: {
+    sessions: 'admins/devise/sessions'
+  }
+
   devise_for :users, controllers: {
          sessions: 'users/devise/sessions',
     registrations: 'users/devise/registrations',
@@ -10,6 +14,11 @@ Rails.application.routes.draw do
   namespace :users do
     resources :home
     resources :contests
+  end
+
+  namespace :admins do
+    resources :homes
+    root 'homes#index'
   end
 
   resources :homes
