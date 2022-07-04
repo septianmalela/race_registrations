@@ -26,6 +26,18 @@ class ListContest < ApplicationRecord
         leadership: 'Kepemimpinan', history: 'Gerakan'
       }
     end
+
+    def get_member_contest(type_pmr)
+      get_list_contests = list_contest_wira(type_pmr)
+      hash_member_contests = {}
+
+      get_list_contests.each do |list_contest|
+        type_contest = list_contest.type_contest
+        hash_member_contests[type_contest.to_sym] = list_contest.member_contests.count
+      end
+
+      hash_member_contests
+    end
   end
 
   def get_code

@@ -8,6 +8,7 @@ class MemberContest < ApplicationRecord
   after_create :create_value_format, :generate_code, :create_order_item
 
   scope :order_desc, ->  { order(created_at: :desc) }
+  scope :get_member_contest, ->(ids) { where(list_contest_id: ids) }
 
   private
 
