@@ -16,7 +16,7 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
 
     if resource.errors.blank?
       resource.build_order.save
-      resource.build_contest.save
+      resource.build_contest(name_school: resource.profile.school).save
     end
   end
 
