@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h2><%= @list_contest.title %></h2>
+          </div>
+          <div class="col-md-6 text-right">
+            <%= link_to 'Back', admins_list_contests_path, class: 'btn btn-primary btn-sm' %>
+          </div>
+        </div>
+        <div class="mt-2">
+          <h4>Mata Lomba</h4>
+          <p class="card-description"><%= @list_contest.title %></p>
+        </div>
+
+        <div class="mt-2">
+          <h4>Type PMR</h4>
+          <p class="card-description"><%= @list_contest.type_pmr.titleize %></p>
+        </div>
+
+        <% inventory = @list_contest.inventory %>
+        <div class="mt-2">
+          <h4>Kuota</h4>
+          <p class="card-description"><%= inventory.stock %></p>
+        </div>
+
+        <div class="mt-2">
+          <h4>Kuota Terjual</h4>
+          <p class="card-description"><%= inventory.sold_quantity ? inventory.sold_quantity : 0 %></p>
+        </div>
+
+        <div class="mt-2">
+          <h4>Sisa Kuota</h4>
+          <p class="card-description"><%= inventory.remaining_stock %></p>
+        </div>
+
+        <div class="mt-2">
+          <h4>Harga</h4>
+          <p class="card-description"><%= number_to_currency(inventory.price, unit: 'Rp. ', separator: ".", precision: 0) %></p>
+        </div>
+
+        <div class="mt-2">
+          <h4>Total Pembayaran</h4>
+          <p class="card-description"><%= number_to_currency(inventory.total_price_sold_quantity, unit: 'Rp. ', separator: ".", precision: 0) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'admins/list_contests/partials/table_member_contest', locals: { member_contests: @member_contests } %>
