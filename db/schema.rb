@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2022_06_26_010320) do
     t.integer "price"
     t.integer "inventoryable_id"
     t.string "inventoryable_type"
-    t.integer "sold_quantity"
+    t.integer "sold_quantity", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 2022_06_26_010320) do
     t.bigint "order_id", null: false
     t.text "avatar_data"
     t.integer "payment", default: 0
+    t.boolean "confirmable", default: false
+    t.text "reason"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_payments_on_order_id"

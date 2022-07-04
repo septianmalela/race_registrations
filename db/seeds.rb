@@ -25,7 +25,7 @@ ListContest.all.each do |list_contest|
   Inventory.create(stock: 20, price: 10000, inventoryable: list_contest)
 end
 
-Admin.create(email: 'admin@gmail.com', password: 'admin123', password: 'admin123')
+Admin.create(email: 'admin@gmail.com', password: 'admin123', password_confirmation: 'admin123')
 
 # first_aid_1 = FirstAid.first
 # first_aid_2 = FirstAid.second
