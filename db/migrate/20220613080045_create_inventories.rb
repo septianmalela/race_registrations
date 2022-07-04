@@ -5,7 +5,7 @@ class CreateInventories < ActiveRecord::Migration[6.1]
       t.integer :price
       t.integer :inventoryable_id
       t.string :inventoryable_type
-      t.integer :sold_quantity
+      t.integer :sold_quantity, default: 0
 
       t.timestamps
     end
