@@ -5,7 +5,8 @@ class MemberContest < ApplicationRecord
   has_one :value_format, dependent: :destroy
   has_one :order_item, dependent: :destroy
 
-  after_create :create_value_format, :generate_code, :create_order_item
+  after_create :create_value_format, :create_order_item
+  # :generate_code
 
   scope :order_desc, ->  { order(created_at: :desc) }
   scope :get_member_contest, ->(ids) { where(list_contest_id: ids) }
