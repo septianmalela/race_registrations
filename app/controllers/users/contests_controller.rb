@@ -2,7 +2,7 @@ class Users::ContestsController < Users::BaseController
   include Modules::Crudable
 
   self.additional_parameters = [
-    member_contests_attributes: %i[id _destroy helper_1 helper_2 helper_3 contest_id list_contest_id]
+    member_contests_attributes: %i[id _destroy helper_1 helper_2 helper_3 contest_id list_contest_id school]
   ]
 
   before_action :set_list_contests, only: :index
