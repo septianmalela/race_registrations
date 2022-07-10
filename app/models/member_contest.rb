@@ -17,12 +17,6 @@ class MemberContest < ApplicationRecord
     build_value_format.save if value_format.blank?
   end
 
-  def generate_code
-    code_number = list_contest.get_code
-    self.code = code_number
-    self.save
-  end
-
   def create_order_item
     return if order_item.present?
 

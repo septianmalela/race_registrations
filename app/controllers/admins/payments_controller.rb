@@ -9,7 +9,7 @@ class Admins::PaymentsController < Admins::AdminBaseController
   end
 
   def accept
-    @payment.accept(params)
+    @payment.accept_payment(params)
     redirect_to admins_payment_path(@payment), notice: 'Accept payment berhasil!'    
   end
 end

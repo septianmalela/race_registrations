@@ -29,6 +29,7 @@
   </div>
 
   <div class="pt-3 mb-5">
-    <%= link_to 'Update Payment', edit_users_payment_path(@payment), class: 'btn btn-primary' %>
+    <%= link_to 'Back', users_payments_path, class: 'btn btn-outline-primary' %>
+    <%= link_to 'Update Payment', edit_users_payment_path(@payment), class: 'btn btn-primary' unless @payment.status.eql?('success') %>
   </div>
 </div>
