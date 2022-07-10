@@ -1,0 +1,3 @@
+<div class="container">
+  <%= render partial: 'users/payments/partials/form', locals: { payment: @payment, url: users_payment_path(@payment), text_submit: 'Save', method: :put } %>
+</div>

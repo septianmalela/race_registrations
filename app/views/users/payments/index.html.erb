@@ -1,0 +1,31 @@
+<div class="container">
+  <h3>Pembayaran Mata Lomba</h3>
+  <h3>Total Sudah Bayar : <%= format_money(@total_payment_user) %></h3>
+  <h4>Sisa Pembayaran : <%= @remaining_payment_user %></h4>
+
+  <%= link_to 'Pembayaran', new_users_payment_path, class: 'btn btn-sm btn-success mt-5' %>
+  <table class="table table-hover table-responsive mt-3">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Bayar</th>
+        <th scope="col">Konfirmasi</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+  <tbody>
+      <% @payments.each_with_index do |payment, idx| %>
+        <tr>
+          <th scope="row"><%= idx + 1 %></th>
+          <td><%= current_user.profile.name %></td>
+          <td><%= format_money(payment.payment) %></td>
+          <td><%= label_yes_no payment.confirmable %></td>
+          <td><%= payment.status&.titleize %></td>
+          <td><%= link_to 'Show Payment', users_payment_path(payment), class: 'btn btn-primary' if payment.status.eql?('reject') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

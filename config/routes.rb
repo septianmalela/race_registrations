@@ -14,11 +14,18 @@ Rails.application.routes.draw do
   namespace :users do
     resources :home
     resources :contests
+    resources :payments
   end
 
   namespace :admins do
     resources :homes
     resources :list_contests
+    resources :payments, only: %i[index show] do
+      member do
+        put :accept
+        put :reject
+      end
+    end
     root 'homes#index'
   end
 

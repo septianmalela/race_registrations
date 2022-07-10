@@ -1,6 +1,6 @@
 <%= form_with(model: contest, url: url, local: true, class: 'needs-validation') do |form| %>
   <%= form.fields :member_contests do |f| %>
-    <%= render partial: 'users/contests/partial/member_contest_fields', locals: { f: f } %>
+    <%= render partial: 'users/contests/partial/member_contest_fields', locals: { f: f } if f.object.new_record? %>
   <% end %>
   <%= link_to_add_fields 'Tambah Mata Lomba +', form, :member_contests %>
   <br>

@@ -1,6 +1,7 @@
 <div class="container">
   <h3>Daftar Lomba PMR <%= current_user.profile&.school&.try(:upcase) %></h3>
   <%= link_to 'Tambah Mata Loma +', new_users_contest_path, class: 'btn btn-sm btn-success' %>
+  <%= link_to 'Pembayaran', users_payments_path, class: 'btn btn-sm btn-success' if current_user.contest.member_contests.present? %>
   <table class="table table-hover table-responsive mt-3">
     <thead>
       <tr>

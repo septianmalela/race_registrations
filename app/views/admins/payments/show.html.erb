@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-10">
+            <% profile = @payment.order.user.profile %>
+            <h2>Pembayaran Unit <%= profile.school rescue '-' %></h2>
+          </div>
+          <div class="col-md-2 text-right">
+            <%= link_to 'Back', admins_payments_path, class: 'btn btn-primary btn-sm' %>
+          </div>
+        </div>
+        <div class="mt-2">
+          <h4>Nama Official</h4>
+          <p class="card-description"><%= profile.name rescue '-' %></p>
+        </div>
+        <div class="mt-2">
+          <h4>Jumlah</h4>
+          <p class="card-description"><%= format_money(@payment.payment) %></p>
+        </div>
+        <div class="mt-2">
+          <h4>Bukti Pembayaran</h4>
+          <p class="card-description"><%= image_tag @payment.avatar_url, class: 'img-fluid img-thumbnail', width: 500 rescue '-' %></p>
+        </div>
+        <div class="mt-2">
+          <h4>Konfirmasi</h4>
+          <p class="card-description"><%= label_yes_no @payment.confirmable %></p>
+        </div>
+        <div class="mt-2">
+          <h4>Status</h4>
+          <p class="card-description"><%= @payment.status.titleize %></p>
+        </div>
+        <% if @payment.status.eql?('reject') %>
+          <div class="mt-2">
+            <h4>Alasan</h4>
+            <p class="card-description"><%= @payment.reason %></p>
+          </div>
+        <% end %>
+        <div class="mt-2">
+          <%= link_to 'Accept', accept_admins_payment_path(@payment), class: 'btn btn-primary', data: {:confirm => 'Data Sudah Benar?'} %>
+          <%= link_to 'Reject', '#', class: 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#exampleModal' unless @payment.status.eql?('reject') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <%= form_with url: reject_admins_payment_path(@payment), method: :put do %>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reject Modal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleInputUsername1">Alasan?</label>
+            <%= text_area_tag :reason, nil, class: 'form-control', required: true, size: '10x10' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Reject', class: 'btn btn-danger' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

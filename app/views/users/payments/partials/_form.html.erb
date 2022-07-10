@@ -1,0 +1,16 @@
+<%= form_with(model: payment, url: url, local: true, method: method) do |form| %>
+  <%= form.hidden_field :order_id, value: current_user.order.id %>
+  <h3>Pembayaran</h3>
+  <div class="form-group mt-3 col-12 col-md-4">
+    <%= form.label :payment, 'Jumlah' %>
+    <%= form.number_field :payment, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mt-3 col-12 col-md-4">
+    <%= form.hidden_field :avatar, value: payment.cached_avatar_data %>
+    <%= form.file_field :avatar, class: 'form-control' %>
+  </div>
+
+  <%= form.submit text_submit, class: 'btn btn-success mt-3' %>
+  <%= link_to 'Back', users_payments_path, class: 'btn btn-danger mt-3' %>
+<% end %>

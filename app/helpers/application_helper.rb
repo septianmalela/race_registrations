@@ -36,4 +36,20 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def label_yes_no(condition = nil)
+    # def label_yes_no(condition = nil, locale = :en)
+    # label_yes = I18n.t("global.is_yes", locale: locale)
+    # label_no  = I18n.t("global.is_no", locale: locale)
+    label_yes = 'Yes'
+    label_no  = 'No'
+
+    return label_yes if condition.eql?(true) || condition.try(:downcase).eql?('true')
+
+    label_no
+  end
+
+  def format_money(payment)
+    number_to_currency(payment, unit: 'Rp. ', separator: ".", precision: 0)
+  end
 end

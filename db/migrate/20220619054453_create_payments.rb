@@ -6,6 +6,7 @@ class CreatePayments < ActiveRecord::Migration[6.1]
       t.integer :payment, default: 0
       t.boolean :confirmable, default: false
       t.text :reason
+      t.integer :status
 
       t.timestamps
     end

@@ -21,11 +21,17 @@
         <i class="icon-screen-desktop menu-icon"></i>
       <% end %>
     </li>
-
     <% list_contest_controller = ['admins/list_contests'].include?(params[:controller]) %>
     <li class="nav-item <%= list_contest_controller ? 'active' : '' %>">
       <%= link_to admins_list_contests_path, class: 'nav-link' do %>
         <span class="menu-title">Mata Lomba</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      <% end %>
+    </li>
+    <% payment_controller = ['admins/payments'].include?(params[:controller]) %>
+    <li class="nav-item <%= payment_controller ? 'active' : '' %>">
+      <%= link_to admins_payments_path, class: 'nav-link' do %>
+        <span class="menu-title">Payments</span>
         <i class="icon-screen-desktop menu-icon"></i>
       <% end %>
     </li>

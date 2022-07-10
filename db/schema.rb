@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_26_010320) do
+ActiveRecord::Schema.define(version: 2022_07_08_141634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2022_06_26_010320) do
     t.integer "status"
     t.integer "total_payment", default: 0
     t.integer "remaining_payment", default: 0
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -97,8 +98,10 @@ ActiveRecord::Schema.define(version: 2022_06_26_010320) do
     t.integer "payment", default: 0
     t.boolean "confirmable", default: false
     t.text "reason"
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "payments"
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
