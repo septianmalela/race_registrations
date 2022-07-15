@@ -7,7 +7,8 @@ Rails.application.routes.draw do
          sessions: 'users/devise/sessions',
     registrations: 'users/devise/registrations',
       invitations: 'users/devise/invitations',
-        passwords: 'users/devise/passwords'
+        passwords: 'users/devise/passwords',
+    confirmations: 'users/devise/confirmations'
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
