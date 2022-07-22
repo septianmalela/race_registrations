@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :homes
-    resources :list_contests
+    resources :list_contests do
+      collection do
+        get :list_wira
+      end
+    end
     resources :payments, only: %i[index show] do
       member do
         put :accept

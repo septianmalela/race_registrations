@@ -12,7 +12,7 @@ class ListContest < ApplicationRecord
 
   serialize :value_format, Hash
 
-  scope :list_contest_wira, ->(type_pmr) { where(type_pmr: type_pmr) }
+  scope :get_list_contests, ->(type_pmr) { where(type_pmr: type_pmr) }
 
   validates :type_pmr, uniqueness: { scope: :type_contest,
     message: "can't double type PMR & type contest" }
@@ -28,7 +28,7 @@ class ListContest < ApplicationRecord
     end
 
     def get_member_contest(type_pmr)
-      get_list_contests = list_contest_wira(type_pmr)
+      get_list_contests = get_list_contests(type_pmr)
       hash_member_contests = {}
 
       get_list_contests.each do |list_contest|

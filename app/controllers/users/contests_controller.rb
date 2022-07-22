@@ -27,7 +27,7 @@ class Users::ContestsController < Users::BaseController
   end
 
   def set_collection
-    @list_contests = ListContest.list_contest_wira(current_profile.type_pmr)
+    @list_contests = ListContest.get_list_contests(current_profile.type_pmr)
     @list_contests = build_select_options(@list_contests, { label: %i[title], value: :id })
   end
 

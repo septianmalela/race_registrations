@@ -1,0 +1,30 @@
+<div class="card-body">
+  <h4 class="card-title">List Mata Lomba <%= name_page %></h4>
+  <%= link_to 'MADYA', admins_list_contests_path, class: 'btn btn-primary' %>
+  <%= link_to 'WIRA', list_wira_admins_list_contests_path, class: 'btn btn-warning' %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Mata Lomba</th>
+        <th>Type PMR</th>
+        <th>Kuota</th>
+        <th>Harga</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% list_contests.each do |list_contest| %>
+      <% inventory = list_contest.inventory %>
+      <tr>
+        <td><%= list_contest.title %></td>
+        <td><%= list_contest.type_pmr.titleize %></td>
+        <td><%= inventory.stock %></td>
+        <td><%= number_to_currency(inventory.price, unit: 'Rp. ', separator: ".", precision: 0) %></td>
+        <td>
+          <%= link_to 'Show', admins_list_contest_path(list_contest), class: 'btn btn-primary btn-sm' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
