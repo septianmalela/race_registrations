@@ -6,11 +6,13 @@ class Admins::ListContestsController < Admins::AdminBaseController
   def index
     super do
       @list_contests = ListContest.get_list_contests('madya')
+      @name_page = 'Madya'
     end
   end
 
   def list_wira
     @list_contests = ListContest.get_list_contests('wira')
+    @name_page = 'Wira'
   end
 
   private
