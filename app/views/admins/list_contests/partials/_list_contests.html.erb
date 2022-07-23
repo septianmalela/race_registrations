@@ -16,6 +16,7 @@
           <th></th>
         </tr>
       </thead>
+      <%= no_table_record(list_contests, '7') %>
       <tbody>
         <% list_contests.each_with_index do |list_contest, idx| %>
           <% inventory = list_contest.inventory %>
