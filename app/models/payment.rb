@@ -27,8 +27,12 @@ class Payment < ApplicationRecord
   end
 
   def payment_order
-    remaining_payment = order.total_payment - order.payments.confirmable_payments.map(&:payment).sum
+    calculate_total_payments = order.payments.confirmable_payments.map(&:payment).sum
+    remaining_payment = order.total_payment - calculate_total_payments
     order.remaining_payment = remaining_payment
+    if order.remaining_payment <= 0
+      order.status = Order.statuses[:success]
+    end
     order.save
   end
 end

@@ -39,7 +39,7 @@ class Order < ApplicationRecord
       next if member_contest.code.present?
 
       list_contest        = member_contest.list_contest
-      code_number         = list_contest.get_code
+      code_number         = member_contest.get_code
       member_contest.code = code_number
       member_contest.save
 

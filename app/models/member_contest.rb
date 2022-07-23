@@ -6,10 +6,27 @@ class MemberContest < ApplicationRecord
   has_one :order_item, dependent: :destroy
 
   after_create :create_value_format, :create_order_item, :remaining_payment_user
-  # :generate_code
 
   scope :order_desc, ->  { order(created_at: :desc) }
   scope :get_member_contest, ->(ids) { where(list_contest_id: ids) }
+
+  def get_code
+    number_code = list_contest.member_contests.map(&:code).reject(&:blank?)
+    code_pmr = list_contest.code
+    return "#{code_pmr}-001" if number_code.blank?
+
+    number_code = number_code.map { |a| a.split('-') }.map(&:last).map(&:to_i).sort.last + 1
+
+    number_code = if number_code < 10
+                    "00#{number_code}"
+                  elsif number_code >= 10 && number_code <= 99
+                    "0#{number_code}"
+                  elsif number_code >= 100
+                    "#{number_code}"
+                  end
+
+    "#{code_pmr}-#{number_code}"
+  end
 
   private
 
