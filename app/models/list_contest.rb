@@ -14,8 +14,7 @@ class ListContest < ApplicationRecord
 
   scope :get_list_contests, ->(type_pmr) { where(type_pmr: type_pmr) }
 
-  validates :type_pmr, uniqueness: { scope: :type_contest,
-    message: "can't double type PMR & type contest" }
+  accepts_nested_attributes_for :inventory
 
   class << self
     def title_names

@@ -1,0 +1,79 @@
+<% if list_contest.errors.present? %>
+  <div class="row purchace-popup">
+    <div class="col-12 stretch-card grid-margin">
+      <div class="card card-secondary">
+        <span class="card-body align-items-center">
+          <h4 class="mb-lg-0">Error Message!</h4>
+          <ul>
+            <% list_contest.errors.full_messages.each do |key| %>
+            <li><%= key %></li>
+            <% end %>
+          </ul>
+        </span>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with(model: list_contest, url: url, local: true, class: "forms-sample") do |f| %>
+  <% params_action_edit = ['update', 'edit'].include?params[:action] %>
+  <div class="form-group">
+    <%= f.label :title, 'Mata Lomba' %>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Mata Lomba', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :type_pmr, 'Type PMR' %>
+    <%= f.select :type_pmr,
+        options_for_select(type_pmrs, list_contest.type_pmr),
+        { include_blank: 'Select Type PMR' }, class: 'form-control', required: true, disabled: params_action_edit %>
+  </div>
+  <div class="form-group">
+    <%= f.label :type_contest, 'Kategori Mata Lomba' %>
+    <%= f.select :type_contest,
+        options_for_select(type_contests, list_contest.type_contest),
+        { include_blank: 'Select Kategori Mata Lomba' }, class: 'form-control', required: true, disabled: params_action_edit %>
+  </div>
+
+  <%= f.fields_for :inventory do |ff| %>
+    <div class="form-group">
+      <%= ff.label :stock, 'Kuota' %>
+      <%= ff.number_field :stock, class: 'form-control', min: 1, placeholder: 1, required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= ff.label :price, 'Harga' %>
+      <%= ff.text_field :price, value: ff.object.price, class: 'form-control', id: 'format_rupiah', placeholder: 'Harga', required: true %>
+    </div>
+  <% end %>
+
+  <%= f.submit text_submit, class: 'btn btn-primary mr-2' %>
+  <%= link_to 'Cancel', admins_list_contests_path, class: 'btn btn-light' %>
+<% end %>
+
+
+<script>
+  $('#format_rupiah').val(formatRupiah($('#format_rupiah').val(), 'Rp. '))
+  $('#format_rupiah').keyup(function() {
+    var format_rupiah = formatRupiah($(this).val(), 'Rp. ')
+    console.log(format_rupiah)
+
+    $(this).val(format_rupiah)
+  })
+
+  function formatRupiah(angka, prefix){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split       = number_string.split(','),
+    sisa        = split[0].length % 3,
+    rupiah        = split[0].substr(0, sisa),
+    ribuan        = split[0].substr(sisa).match(/\d{3}/gi);
+   
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+      separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+   
+    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+    return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+  }
+</script>
