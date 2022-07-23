@@ -5,7 +5,7 @@ class Admins::ListContestsController < Admins::AdminBaseController
   before_action :form_collection, only: %i[new create edit update]
   before_action :to_integer_price_update, only: %i[update]
   before_action :to_integer_price_create, only: %i[create]
-  before_action :set_redirect_path, only: %i[create update]
+  before_action :set_redirect_path, only: %i[create update destroy]
 
   self.additional_parameters = [
     inventory_attributes: %i[_destroy id stock price inventoryable_id inventoryable_type]

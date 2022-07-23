@@ -10,11 +10,20 @@ class ListContest < ApplicationRecord
   has_many :member_contests
   has_many :value_formats
 
+  before_destroy :check_member_contests
+
   serialize :value_format, Hash
 
   scope :get_list_contests, ->(type_pmr) { where(type_pmr: type_pmr) }
 
   accepts_nested_attributes_for :inventory
+
+  def check_member_contests
+    return if member_contests.blank?
+
+    self.errors.add(:base, "Mata lomba tidak bisa dihapus karena ada peserta yang daftar!")
+    throw(:abort)
+  end
 
   class << self
     def title_names
