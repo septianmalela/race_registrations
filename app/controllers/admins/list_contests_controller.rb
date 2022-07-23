@@ -53,6 +53,11 @@ class Admins::ListContestsController < Admins::AdminBaseController
   end
 
   def set_redirect_path
-    self.redirect_path = admins_list_contests_path
+    set_redirect = if resource.type_pmr.eql?('wira')
+                    list_wira_admins_list_contests_path
+                   else
+                    admins_list_contests_path
+                   end
+    self.redirect_path = set_redirect
   end
 end
