@@ -3,11 +3,12 @@
   <%= link_to 'MADYA', admins_list_contests_path, class: 'btn btn-primary' %>
   <%= link_to 'WIRA', list_wira_admins_list_contests_path, class: 'btn btn-warning' %>
   <%= link_to 'Tambah Mata Lomba', new_admins_list_contest_path, class: 'btn btn-success' %>
-  <table class="table table-hover">
+  <table class="table table-hover table-responsive">
     <thead>
       <tr>
         <th>Mata Lomba</th>
         <th>Type PMR</th>
+        <th>Code PMR</th>
         <th>Kuota</th>
         <th>Harga</th>
         <th></th>
@@ -19,6 +20,7 @@
       <tr>
         <td><%= list_contest.title %></td>
         <td><%= list_contest.type_pmr.titleize %></td>
+        <td><%= list_contest.code %></td>
         <td><%= inventory.stock %></td>
         <td><%= number_to_currency(inventory.price, unit: 'Rp. ', separator: ".", precision: 0) %></td>
         <td>

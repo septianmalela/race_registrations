@@ -17,21 +17,29 @@
 
 <%= form_with(model: list_contest, url: url, local: true, class: "forms-sample") do |f| %>
   <% params_action_edit = ['update', 'edit'].include?params[:action] %>
+  <div id="action_edit" data-action-edit="<%= params_action_edit %>"></div>
   <div class="form-group">
     <%= f.label :title, 'Mata Lomba' %>
-    <%= f.text_field :title, class: 'form-control', placeholder: 'Mata Lomba', required: true %>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Mata Lomba', required: true, id: 'title_contest' %>
   </div>
   <div class="form-group">
     <%= f.label :type_pmr, 'Type PMR' %>
     <%= f.select :type_pmr,
         options_for_select(type_pmrs, list_contest.type_pmr),
-        { include_blank: 'Select Type PMR' }, class: 'form-control', required: true, disabled: params_action_edit %>
+        { include_blank: 'Select Type PMR' }, class: 'form-control', required: true, disabled: params_action_edit, id: 'type_pmrs' %>
   </div>
   <div class="form-group">
     <%= f.label :type_contest, 'Kategori Mata Lomba' %>
     <%= f.select :type_contest,
         options_for_select(type_contests, list_contest.type_contest),
         { include_blank: 'Select Kategori Mata Lomba' }, class: 'form-control', required: true, disabled: params_action_edit %>
+  </div>
+
+  <div class="form-group">
+    <% title1 = 'Code PMR default didapat dari title dan type pmr, contoh PPW(Pertolongan Pertama Wira) dan bisa di edit' %>
+    <% title2 = 'Code PMR tidak bisa di edit! hanya bisa di edit ketika membuat mata lomba baru!' %>
+    <%= f.label :code, params_action_edit ? title2 : title1 %>
+    <%= f.text_field :code, class: 'form-control', required: true, id: 'code_pmr', placeholder: 'PPW', disabled: params_action_edit %>
   </div>
 
   <%= f.fields_for :inventory do |ff| %>
@@ -60,6 +68,15 @@
     $(this).val(format_rupiah)
   })
 
+  $('#title_contest').keyup(function() {
+    $(this).val($(this).val().toUpperCase())
+    getCodePMR()
+  })
+
+  $('#type_pmrs').change(function() {
+    getCodePMR()
+  })
+
   function formatRupiah(angka, prefix){
     var number_string = angka.replace(/[^,\d]/g, '').toString(),
     split       = number_string.split(','),
@@ -75,5 +92,23 @@
    
     rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
     return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+  }
+
+  function getCodePMR() {
+    var params_action_edit = $('#action_edit').data('action-edit');
+    if (!params_action_edit) {
+      var title_contest = $('#title_contest').val().split(' ');
+      var arr_title = [];
+      if (!!title_contest) {
+        $.each(title_contest, function(idx, title) {
+          arr_title.push(title.split('')[0])
+        })
+        var type_pmr = $('#type_pmrs').val().split('')[0]
+        if (!!type_pmr) {
+          arr_title.push(type_pmr.toUpperCase())
+        }
+        $('#code_pmr').val(arr_title.join(''))
+      }
+    }
   }
 </script>
