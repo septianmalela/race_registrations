@@ -1,11 +1,12 @@
 <!-- partial:partials/_navbar.html -->
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex align-items-center">
-    <a class="navbar-brand brand-logo" href="index.html">
-      <%#= image_tag 'images/logo.svg', class: 'logo-dark' %>
+    <%= link_to '#', class: 'navbar-brand brand-logo' do %>
       <div style="color: #38ce3c;" class="font-weight-normal">AKPER VI</div>
-    </a>
-    <a class="navbar-brand brand-logo-mini" href="index.html"><%= image_tag 'images/logo-mini.svg' %></a>
+    <% end %>
+    <%= link_to '#', class: 'navbar-brand brand-logo-mini' do %>
+      <%= image_tag 'images/logo-mini.svg' %>
+    <% end %>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
     <h5 class="mb-0 font-weight-medium d-none d-lg-flex">AKPER VI dashboard!</h5>

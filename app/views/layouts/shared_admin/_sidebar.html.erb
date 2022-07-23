@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile">
-      <a href="#" class="nav-link">
+      <%= link_to '#', class: 'nav-link' do %>
         <div class="profile-image">
           <%= image_tag 'images/faces/face8.jpg', class: 'img-xs rounded-circle' %>
         </div>
@@ -9,7 +9,7 @@
           <p class="profile-name">AKPER VI</p>
           <p class="designation">Administrator</p>
         </div>
-      </a>
+      <% end %>
     </li>
     <li class="nav-item nav-category">
       <span class="nav-link">Dashboard</span>
