@@ -3,28 +3,45 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Daftar Peserta Lomba</h4>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>School</th>
-              <th>Code</th>
-              <th>Penolong 1</th>
-              <th>Penolong 2</th>
-              <th>Penolong 3</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% member_contests.each do |member_contest| %>
+        <div class="table-responsive border rounded p-1">
+          <table class="table">
+            <thead>
               <tr>
-                <td><%= member_contest.school %></td>
-                <td><%= member_contest.code %></td>
-                <td><%= member_contest.helper_1 %></td>
-                <td><%= member_contest.helper_2 %></td>
-                <td><%= member_contest.helper_3 %></td>
+                <th class="font-weight-bold">No</th>
+                <th class="font-weight-bold">School</th>
+                <th class="font-weight-bold">Code PMR</th>
+                <th class="font-weight-bold">Penolong 1</th>
+                <th class="font-weight-bold">Penolong 2</th>
+                <th class="font-weight-bold">Penolong 3</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% member_contests.each_with_index do |member_contest, idx| %>
+                <tr>
+                  <td><%= idx + 1 %></td>
+                  <td><%= member_contest.school %></td>
+                  <td><%= member_contest.code %></td>
+                  <td><%= member_contest.helper_1 %></td>
+                  <td><%= member_contest.helper_2 %></td>
+                  <td><%= member_contest.helper_3 %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex mt-4 flex-wrap">
+          <p class="text-muted">Showing 1 to 10 of 57 entries</p>
+          <nav class="ml-auto">
+            <ul class="pagination separated pagination-info">
+              <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-left"></i></a></li>
+              <li class="page-item active"><a href="#" class="page-link">1</a></li>
+              <li class="page-item"><a href="#" class="page-link">2</a></li>
+              <li class="page-item"><a href="#" class="page-link">3</a></li>
+              <li class="page-item"><a href="#" class="page-link">4</a></li>
+              <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
