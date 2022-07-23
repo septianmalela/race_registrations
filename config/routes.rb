@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :users do
-    resources :home
+    resources :home, only: :index
     resources :contests
     resources :payments
   end
