@@ -37,6 +37,7 @@ Rails.application.routes.draw do
         get :all_notification_read
       end
     end
+    resources :users, only: %i[index show]
     root 'homes#index'
   end
 

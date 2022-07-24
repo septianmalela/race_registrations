@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <h2>Show User <%= @profile.name %></h2>
+          </div>
+          <div class="col-md-4 text-right">
+            <%= link_to 'Back', admins_users_path, class: 'btn btn-primary btn-sm' %>
+          </div>
+        </div>
+        <div class="mt-2">
+          <h4>Email</h4>
+          <p class="card-description"><%= @user.email %></p>
+        </div>
+        <div class="mt-2">
+          <h4>Name Official</h4>
+          <p class="card-description"><%= @profile.name %></p>
+        </div>
+        <div class="mt-2">
+          <h4>Name School</h4>
+          <p class="card-description"><%= @profile.school %></p>
+        </div>
+        <div class="mt-2">
+          <h4>Phone Number</h4>
+          <p class="card-description"><%= @profile.phone %></p>
+        </div>
+        <div class="mt-2">
+          <h4>Type PMR</h4>
+          <p class="card-description"><%= @profile.type_pmr.titleize %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'admins/list_contests/partials/table_member_contest', locals: { member_contests: @member_contests } %>

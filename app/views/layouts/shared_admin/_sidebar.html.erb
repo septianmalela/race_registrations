@@ -14,6 +14,13 @@
     <li class="nav-item nav-category">
       <span class="nav-link">Dashboard</span>
     </li>
+    <% user_controller = ['admins/users'].include?(params[:controller]) %>
+    <li class="nav-item <%= user_controller ? 'active' : '' %>">
+      <%= link_to admins_users_path, class: 'nav-link' do %>
+        <span class="menu-title">Users</span>
+        <i class="icon-people menu-icon"></i>
+      <% end %>
+    </li>
     <% homes_controller = ['admins/homes'].include?(params[:controller]) %>
     <li class="nav-item <%= homes_controller ? 'active' : '' %>">
       <%= link_to admins_homes_path, class: 'nav-link' do %>
@@ -25,14 +32,14 @@
     <li class="nav-item <%= list_contest_controller ? 'active' : '' %>">
       <%= link_to admins_list_contests_path, class: 'nav-link' do %>
         <span class="menu-title">Mata Lomba</span>
-        <i class="icon-screen-desktop menu-icon"></i>
+        <i class="icon-badge menu-icon"></i>
       <% end %>
     </li>
     <% payment_controller = ['admins/payments'].include?(params[:controller]) %>
     <li class="nav-item <%= payment_controller ? 'active' : '' %>">
       <%= link_to admins_payments_path, class: 'nav-link' do %>
         <span class="menu-title">Payments</span>
-        <i class="icon-screen-desktop menu-icon"></i>
+        <i class="icon-credit-card menu-icon"></i>
       <% end %>
     </li>
   </ul>
