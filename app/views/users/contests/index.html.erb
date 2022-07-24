@@ -9,6 +9,7 @@
         <th scope="col">Mata Lomba</th>
         <th scope="col">Code</th>
         <th scope="col">Tingkatan</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
           <td><%= member_contest.list_contest.title %></td>
           <td><%= member_contest.code %></td>
           <td><%= member_contest.list_contest.type_pmr.titleize %></td>
+          <td><%= link_to 'Show', users_member_contest_path(member_contest), class: 'btn btn-sm btn-primary' %></td>
         </tr>
       <% end %>
     </tbody>

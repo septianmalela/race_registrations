@@ -1,0 +1,11 @@
+<div class="container">
+  <h4>Show Daftar Perserta</h4>
+
+  <h5 class="card-title">Nama Sekolah : <%= @member_contest.school %></h5>
+  <h5 class="card-title">Mata Lomba : <%= @member_contest.list_contest.title %></h5>
+  <h5 class="card-title">Code PMR : <%= @member_contest.code %></h5>
+  <h5 class="card-title">Penolong 1 : <%= @member_contest.helper_1 %></h5>
+  <h5 class="card-title">Penolong 2 : <%= @member_contest.helper_2 %></h5>
+  <h5 class="card-title">Penolong 3 : <%= @member_contest.helper_3 %></h5>
+  <%= link_to 'Back', users_contests_path, class: 'btn btn-sm btn-primary' %>
+</div>

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :home, only: :index
     resources :contests
     resources :payments
+    resources :member_contests, only: :show
   end
 
   namespace :admins do
@@ -29,6 +30,11 @@ Rails.application.routes.draw do
       member do
         put :accept
         put :reject
+      end
+    end
+    resources :notifications, only: %i[index show] do
+      collection do
+        get :all_notification_read
       end
     end
     root 'homes#index'
