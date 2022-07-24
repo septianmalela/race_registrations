@@ -10,45 +10,31 @@
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
     <h5 class="mb-0 font-weight-medium d-none d-lg-flex">AKPER VI Dashboard!</h5>
+    <% show_notification = @notifications.present? ? 'show' : '' %>
+    <% show_notification =  '' if ['admins/notifications'].include?params[:controller] %>
     <ul class="navbar-nav navbar-nav-right ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+      <li class="nav-item dropdown <%= show_notification %>">
+        <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="<%= @notifications.present? %>">
           <i class="icon-speech"></i>
-          <span class="count">7</span>
+          <span class="count"><%= @total_notifications %></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
-          <a class="dropdown-item py-3">
-            <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0 <%= show_notification %>" aria-labelledby="messageDropdown">
+          <%= link_to admins_notifications_path, class: 'dropdown-item py-3' do %>
+            <p class="mb-0 font-weight-medium float-left">You have <%= @total_notifications %> unread notifications</p>
             <span class="badge badge-pill badge-primary float-right">View all</span>
-          </a>
+          <% end %>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <%= image_tag 'images/faces/face10.jpg', class: 'img-sm profile-pic' %>
-            </div>
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-              <p class="font-weight-light small-text"> The meeting is cancelled </p>
-            </div>
-          </a>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <%= image_tag 'images/faces/face12.jpg', class: 'img-sm profile-pic' %>
-            </div>
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-              <p class="font-weight-light small-text"> The meeting is cancelled </p>
-            </div>
-          </a>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <%= image_tag 'images/faces/face1.jpg', class: 'img-sm profile-pic' %>
-            </div>
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-              <p class="font-weight-light small-text"> The meeting is cancelled </p>
-            </div>
-          </a>
+          <% @notifications.each do |notification| %>
+            <%= link_to admins_notification_path(notification), class: 'dropdown-item preview-item' do %>
+              <div class="preview-thumbnail">
+                <%= image_tag 'images/faces/face10.jpg', class: 'img-sm profile-pic' %>
+              </div>
+              <div class="preview-item-content flex-grow py-2">
+                <p class="preview-subject ellipsis font-weight-medium text-dark">From <%= notification.notificationable.order.user.profile.name %></p>
+                <p class="font-weight-light small-text"><%= notification.information %></p>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </li>
       <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">

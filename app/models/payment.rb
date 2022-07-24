@@ -3,9 +3,13 @@ class Payment < ApplicationRecord
 
   belongs_to :order
 
+  has_many :notifications, as: :notificationable, dependent: :destroy
+
   enum status: [:success, :pending, :reject], _suffix: true
 
   scope :confirmable_payments, -> { where(confirmable: true) }
+
+  after_create :create_notifications
 
   def reject_payment(params)
     self.reason = params[:reason]
@@ -34,5 +38,12 @@ class Payment < ApplicationRecord
       order.status = Order.statuses[:success]
     end
     order.save
+  end
+
+  def create_notifications
+    url = "#{default_url}/admins/payments/#{id}"
+    information_notification = 'Ada Pembayaran Baru!'
+    notification = notifications.new(information: information_notification, url_path: url)
+    notification.save
   end
 end

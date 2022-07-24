@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <h2>Show Notification <%= @notification.notificationable_type %></h2>
+          </div>
+          <div class="col-md-4 text-right">
+            <%= link_to 'Back', admins_notifications_path, class: 'btn btn-primary btn-sm' %>
+          </div>
+        </div>
+        <div class="mt-2">
+          <h4>Information</h4>
+          <p class="card-description"><%= @notification.information %></p>
+        </div>
+
+        <div class="mt-2">
+          <h4>Read?</h4>
+          <p class="card-description"><%= label_yes_no(@notification.read) %></p>
+        </div>
+
+        <div class="mt-2">
+          <h4>Link</h4>
+          <p class="card-description"><%= link_to 'Show', @notification.url_path %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

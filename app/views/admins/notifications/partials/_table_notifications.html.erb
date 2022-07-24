@@ -1,0 +1,47 @@
+<div class="card-body">
+  <h4 class="card-title"><%= name_page %></h4>
+  <%= link_to 'All Notification Unreads', admins_notifications_path, class: 'btn btn-primary btn-sm' %>
+  <%= link_to 'All Notification Reads', all_notification_read_admins_notifications_path, class: 'btn btn-primary btn-sm' %>
+  <div class="table-responsive border rounded p-1 mt-2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="font-weight-bold">No</th>
+          <th class="font-weight-bold">Information</th>
+          <th class="font-weight-bold">Read?</th>
+          <th class="font-weight-bold">Notificationable Type</th>
+          <th class="font-weight-bold">From</th>
+          <th></th>
+        </tr>
+      </thead>
+      <%= no_table_record(notifications, '7') %>
+      <tbody>
+        <% notifications.each_with_index do |notification, idx| %>
+          <tr>
+            <td><%= idx + 1 %></td>
+            <td><%= notification.information %></td>
+            <td><%= label_yes_no(notification.read) %></td>
+            <td><%= notification.notificationable_type %></td>
+            <td><%= notification.notificationable.order.user.profile.name %></td>
+            <td>
+              <%= link_to 'Show', admins_notification_path(notification), class: 'btn btn-primary btn-sm' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex mt-4 flex-wrap">
+    <p class="text-muted">Showing 1 to 10 of 57 entries</p>
+    <nav class="ml-auto">
+      <ul class="pagination separated pagination-info">
+        <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-left"></i></a></li>
+        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+        <li class="page-item"><a href="#" class="page-link">2</a></li>
+        <li class="page-item"><a href="#" class="page-link">3</a></li>
+        <li class="page-item"><a href="#" class="page-link">4</a></li>
+        <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-right"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
