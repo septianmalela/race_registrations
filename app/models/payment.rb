@@ -8,6 +8,7 @@ class Payment < ApplicationRecord
   enum status: [:success, :pending, :reject], _suffix: true
 
   scope :confirmable_payments, -> { where(confirmable: true) }
+  scope :not_confirm_payments, -> { where(confirmable: false) }
 
   after_create :create_notifications
 
@@ -36,6 +37,8 @@ class Payment < ApplicationRecord
     order.remaining_payment = remaining_payment
     if order.remaining_payment <= 0
       order.status = Order.statuses[:success]
+    else
+      order.status = Order.statuses[:pending]
     end
     order.save
   end

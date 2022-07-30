@@ -8,10 +8,13 @@ class Users::PaymentsController < Users::BaseController
   before_action :set_remaining_user, only: :index
   before_action :set_redirect_path, only: %i[create new edit update]
   before_action :set_status_payment, only: %i[create new edit update]
+  before_action :set_not_confim_payment, only: :index
+  before_action :set_total_payments, only: :index
+  before_action :calculate_all_payments, only: :index
 
   def index
     super do
-      @payments = current_user.order.payments.order(created_at: :desc)
+      @payments = current_order.payments.order(created_at: :desc)
     end
   end
 
@@ -37,5 +40,17 @@ class Users::PaymentsController < Users::BaseController
 
   def set_status_payment
     resource.status = Payment.statuses[:pending]
+  end
+
+  def set_not_confim_payment
+    @not_confirm_payment = current_order.not_confirm_payments
+  end
+
+  def set_total_payments
+    @total_payments = current_order.get_total_payment
+  end
+
+  def calculate_all_payments
+    @calculate_all_payments = current_order.calculate_all_payment
   end
 end

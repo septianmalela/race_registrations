@@ -46,4 +46,20 @@ class Order < ApplicationRecord
       generate_name_tag(code_number)
     end
   end
+
+  def not_confirm_payments
+    return 0 if payments.not_confirm_payments.blank?
+
+    payments.not_confirm_payments.map(&:payment).sum
+  end
+
+  def get_total_payment
+    return 0 if order_items.blank?
+
+    order_items.map(&:price).sum
+  end
+
+  def calculate_all_payment
+    get_payment_user + remaining_payment + not_confirm_payments
+  end
 end
