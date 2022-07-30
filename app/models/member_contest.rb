@@ -46,6 +46,7 @@ class MemberContest < ApplicationRecord
     order = contest.user.order
 
     order.remaining_payment = get_remaining_payment
+    order.status = Order.statuses[:pending]
     order.save
   end
 

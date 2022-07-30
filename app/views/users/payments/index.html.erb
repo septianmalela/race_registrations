@@ -1,10 +1,10 @@
 <div class="container">
   <h4>Pembayaran Mata Lomba</h4>
   <h4>Total : <%= format_money(@total_payments) %></h4>
-  <h3>Total Sudah Bayar : <%= format_money(@total_payment_user) %></h3>
+  <h4>Total Sudah Bayar : <%= format_money(@total_payment_user) %></h4>
   <h4>Sisa Pembayaran : <%= format_money(@remaining_payment_user) %></h4>
-  <h4>Pembayaran Yang Belum Di Acc Admin : <%= format_money(@not_confirm_payment) %></h4>
-  <%= link_to 'Pembayaran', new_users_payment_path, class: 'btn btn-sm btn-success mt-5' unless @calculate_all_payments >= @total_payments %>
+  <h4>Pembayaran yang belum di confirm admin : <%= format_money(@not_confirm_payment) %></h4>
+  <%= link_to 'Pembayaran', new_users_payment_path, class: 'btn btn-sm btn-success mt-3' if @calculate_all_payments >= @total_payments %>
   <table class="table table-hover table-responsive mt-3">
     <thead>
       <tr>
