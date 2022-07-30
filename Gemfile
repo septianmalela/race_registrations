@@ -58,3 +58,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "shrine", "~> 3.0"
 gem 'rmagick'
+
+# Handle error net-smtp
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
